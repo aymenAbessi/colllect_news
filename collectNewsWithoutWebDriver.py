@@ -1,6 +1,7 @@
 import requests
 import json
 import datetime
+import time
 import pandas as pd
 from bs4 import BeautifulSoup
 import firebase_admin
@@ -103,9 +104,12 @@ def job():
     print("*************************** data sended *****************************")
     
 
-current_time = datetime.datetime.now().time()
-print(f"it's : {current_time} !")
-if current_time.hour == 8 and current_time.minute == 0:
-    job()
+while True :
+    current_time = datetime.datetime.now().time()
+    print(f"it's : {current_time} !")
+    if current_time.hour == 8 and current_time.minute == 0:
+        job()
+    print("wait for 45 secs")
+    time.sleep(45)
 
 
