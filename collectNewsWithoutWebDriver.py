@@ -1,8 +1,7 @@
 import requests
 import json
+import datetime
 import pandas as pd
-import time
-import schedule
 from bs4 import BeautifulSoup
 from datetime import datetime
 import firebase_admin
@@ -96,23 +95,18 @@ def collect(linkNewsPapper, name, titleP, subTP, href, root):
 
 #collect("https://www.assabahnews.tn/","saba7",'.item-title a','.introtext','.item-title a','div.item-inner')
 #collect("https://www.alchourouk.com/", "chorok", 'div div span a', 'div div div', 'div div span a', 'div.row-article.views-row')
-
+print('script on the cloud !!')
 
 def job():
+    print("start collecting data !!")
     collect("https://www.assabahnews.tn/","saba7",'.item-title a','.introtext','.item-title a','div.item-inner')
     collect("https://www.alchourouk.com/", "chorok", 'div div span a', 'div div div', 'div div span a', 'div.row-article.views-row')
     print("*************************** data sended *****************************")
-    print("wait for 23 hours and 55 min")
-    time.sleep(23 * 60 * 60)
+    
 
-# Schedule the job to run at 8am every day
-schedule.every().day.at("08:00").do(job)
-
-# Run the scheduled task indefinitely
-while True:
-    print('begin')
-    schedule.run_pending()
-    print("**********checking for the next collect time *********")
-    time.sleep(45) # wait for 60 seconds before checking the schedule again
+current_time = datetime.datetime.now().time()
+print(f"it's : {current_time} !")
+if current_time.hour == 8 and current_time.minute == 0:
+    job()
 
 
