@@ -3,7 +3,6 @@ import json
 import datetime
 import pandas as pd
 from bs4 import BeautifulSoup
-from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
