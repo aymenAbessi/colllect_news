@@ -1,6 +1,5 @@
 beautifulsoup4
-requests
 pandas
-schedule
-firebase_admin
+requests
+firebase-admin
 python-dotenv
